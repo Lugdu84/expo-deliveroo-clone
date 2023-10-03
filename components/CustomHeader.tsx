@@ -1,9 +1,11 @@
 import {Text, View, Image, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import Colors  from '@/constants/Colors'
 import { Link } from 'expo-router'
 import { TextInput } from 'react-native-gesture-handler'
+import BottomSheet from './BottomSheet'
+import { BottomSheetModal } from '@gorhom/bottom-sheet'
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
@@ -36,13 +38,19 @@ const SearchBar = () => {
 
 
 const CustomHeader = () => {
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const openModal = () => {
+    bottomSheetModalRef.current?.present();
+    
+  }
   return (
     <SafeAreaView style={styles.safeArea}>
+      <BottomSheet ref={bottomSheetModalRef} />
       <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={openModal}>
           <Image source={require('@/assets/images/bike.png')} style={styles.bike} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.titleContainer}>
+        <TouchableOpacity onPress={openModal} style={styles.titleContainer}>
           <Text style={styles.title}>Delivery - Now</Text>
           <View style={styles.locationName}>
             <Text style={styles.subtitle}>San Francisco</Text>
