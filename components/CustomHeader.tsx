@@ -14,7 +14,6 @@ const SearchBar = () => {
     setSearchText('');
   };
   return (
-
     <View style={styles.searchContainer}>
       <View style={styles.searchSection}>
         <View style={styles.searchField}>
