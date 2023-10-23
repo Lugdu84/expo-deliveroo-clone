@@ -3,6 +3,8 @@ import { forwardRef, useCallback, useMemo } from 'react'
 import { BottomSheetBackdrop, BottomSheetModal, useBottomSheetModal } from '@gorhom/bottom-sheet'
 import { View } from './Themed'
 import Colors from '@/constants/Colors'
+import { Link } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
 
 export type Ref = BottomSheetModal
 
@@ -15,7 +17,6 @@ const BottomSheet = forwardRef<Ref>((props, ref) => {
   return (
       <BottomSheetModal handleIndicatorStyle={{display: "none"}} backgroundStyle={{backgroundColor: isDarkMode ? Colors.dark.background : Colors.light.background}} overDragResistanceFactor={0} ref={ref} snapPoints={snapPoints} backdropComponent={renderBackdrop}>
       
-        
       <View style={styles.container}>
           <View style={styles.toggle} >
             <TouchableOpacity style={styles.toggleActive}>
@@ -24,7 +25,31 @@ const BottomSheet = forwardRef<Ref>((props, ref) => {
             <TouchableOpacity style={styles.toggleInactive}>
               <Text style={styles.textInactive}>Pickup</Text>
             </TouchableOpacity>
-          </View>
+        </View>
+        <Text style={styles.subHeader}>
+          Your Location
+        </Text>
+        <Link href={'/'} asChild>
+          <TouchableOpacity>
+            <View style={styles.item}>
+              <Ionicons name="location-outline" size={20} color={Colors.medium} />
+              <Text style={{flex: 1}}>Current location</Text>
+              <Ionicons name="chevron-forward" size={20} color={Colors.primary} />
+            </View>
+          </TouchableOpacity>
+        </Link>
+        <Text style={styles.subHeader}>
+          Arrival time
+        </Text>
+        <Link href={'/'} asChild>
+          <TouchableOpacity>
+            <View style={styles.item}>
+              <Ionicons name="stopwatch-outline" size={20} color={Colors.medium} />
+              <Text style={{flex: 1}}>Now</Text>
+              <Ionicons name="chevron-forward" size={20} color={Colors.primary} />
+            </View>
+          </TouchableOpacity>
+        </Link>
           <TouchableOpacity style={styles.button} onPress={() => dismiss()}>
             <Text style={styles.buttonText}>Confirm</Text>
           </TouchableOpacity>
@@ -71,6 +96,21 @@ const styles = StyleSheet.create({
     margin: 16,
     borderRadius: 4,
     alignItems: "center",
+  },
+  subHeader: {
+    fontSize: 16,
+    fontWeight: "bold",
+    opacity: 0.6,
+    margin: 16,
+  },
+  item: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    padding: 16,
+    gap: 8,
+    borderColor: Colors.grey,
+    borderWidth: 1,
   }
 })
 

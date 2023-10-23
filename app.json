@@ -16,13 +16,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "fr.devaidaya.deliverooClone"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "fr.devaidaya.deliverooClone"
     },
     "web": {
       "bundler": "metro",
@@ -35,6 +37,14 @@
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "72bf5f25-40ec-490e-bb06-93e23d0ff38d"
+      }
     }
   }
 }
